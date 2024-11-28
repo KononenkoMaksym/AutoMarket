@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket Ukraine - Каталог автомобілів</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/catalog.css">
+    <style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="../images/logo.png" style="width:50px ; height: 50px">
+            <a href="../index.html" class="logo">AutoMarket Ukraine</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Головна</a></li>
+                    <li><a href="../html/catalog.html">Каталог автомобілів</a></li>
+                    <li><a href="../html/services.html">Послуги</a></li>
+                    <li><a href="../html/about.html">Про компанію</a></li>
+                    <li><a href="../html/news.html">Новини</a></li>
+                    <li><a href="../html/contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section catalog-filters">
+        <div class="container">
+            <h1>Каталог автомобілів</h1>
+            <div class="filter-group">
+                <select id="brand-filter" class="filter-select">
+                    <option value="">Усі марки</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Mazda">Mazda</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="Volvo">Volvo</option>
+                    <option value="Ford">Ford</option>
+                </select>
+                <select id="year-filter" class="filter-select">
+                    <option value="">Рік випуску</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <select id="condition-filter" class="filter-select">
+                    <option value="">Стан авто</option>
+                    <option value="new">Нова</option>
+                    <option value="used">Вживана</option>
+                </select>
+                <select id="price-filter" class="filter-select">
+                    <option value="">Ціна</option>
+                    <option value="0-500000">До 500 000 ₴</option>
+                    <option value="500000-1000000">500 000 - 1 000 000 ₴</option>
+                    <option value="1000000+">від 1 000 000 ₴</option>
+                </select>
+                <select id="sort-filter" class="filter-select">
+                    <option value="price-asc">Ціна: за зростанням</option>
+                    <option value="price-desc">Ціна: за спаданням</option>
+                    <option value="year-asc">Рік: за зростанням</option>
+                    <option value="year-desc">Рік: за спаданням</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="section car-catalog">
+        <div class="container">
+            <h2 class="section-title">Доступні автомобілі</h2>
+            <div id="car-grid" class="car-grid">
+            </div>
+        </div>
+    </section>
+
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Придбати автомобіль</h2>
+            <form id="buy-form">
+                <input type="text" name="name" placeholder="Ваше ім'я" required>
+                <input type="tel" name="phone" placeholder="Номер телефону" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select name="car-model" id="selected-car" required>
+                </select>
+                <textarea name="message" placeholder="Додаткові коментарі"></textarea>
+                <button type="submit" class="btn btn-primary">Надіслати заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const cars = [
+            {
+                id: 1,
+                brand: 'Toyota',
+                model: 'Camry',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.5 л бензин',
+                transmission: 'Автомат',
+                price: 1200000,
+                image: '../images/camry1.jpg'
+            },
+            {
+                id: 2,
+                brand: 'Toyota',
+                model: 'Camry',
+                year: 2023,
+                mileage: 15000,
+                condition: 'used',
+                engine: '2.5 л бензин',
+                transmission: 'Автомат',
+                price: 1050000,
+                image: '../images/camry2.jpg'
+            },
+            {
+                id: 3,
+                brand: 'Toyota',
+                model: 'Camry',
+                year: 2022,
+                mileage: 35000,
+                condition: 'used',
+                engine: '2.5 л бензин',
+                transmission: 'Автомат',
+                price: 900000,
+                image: '../images/camry3.jpg'
+            },
+            {
+                id: 4,
+                brand: 'Honda',
+                model: 'Accord',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 1250000,
+                image: '../images/hondaaccord1.jpg'
+            },
+            {
+                id: 5,
+                brand: 'Honda',
+                model: 'Accord',
+                year: 2023,
+                mileage: 10000,
+                condition: 'used',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 1100000,
+                image: '../images/hondaaccord2.jpg'
+            },
+            {
+                id: 6,
+                brand: 'Honda',
+                model: 'Accord',
+                year: 2022,
+                mileage: 45000,
+                condition: 'used',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 950000,
+                image: '../images/hondaaccord3.jpg'
+            },
+            {
+                id: 7,
+                brand: 'Volkswagen',
+                model: 'Passat',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л дизель',
+                transmission: 'Автомат',
+                price: 1100000,
+                image: '../images/VolkswagenPassat1.jpg'
+            },
+            {
+                id: 8,
+                brand: 'Volkswagen',
+                model: 'Passat',
+                year: 2023,
+                mileage: 20000,
+                condition: 'used',
+                engine: '2.0 л дизель',
+                transmission: 'Автомат',
+                price: 950000,
+                image: '../images/VolkswagenPassat2.jpg'
+            },
+            {
+                id: 9,
+                brand: 'Volkswagen',
+                model: 'Passat',
+                year: 2022,
+                mileage: 50000,
+                condition: 'used',
+                engine: '2.0 л дизель',
+                transmission: 'Автомат',
+                price: 800000,
+                image: '../images/VolkswagenPassat3.jpg'
+            },
+            {
+                id: 10,
+                brand: 'BMW',
+                model: '3 Series',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1550000,
+                image: '../images/bmw3series1.jpg'
+            },
+            {
+                id: 11,
+                brand: 'BMW',
+                model: '3 Series',
+                year: 2023,
+                mileage: 15000,
+                condition: 'used',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1350000,
+                image: '../images/bmw3series2.jpg'
+            },
+            {
+                id: 12,
+                brand: 'BMW',
+                model: '3 Series',
+                year: 2022,
+                mileage: 40000,
+                condition: 'used',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1150000,
+                image: '../images/bmw3series3.jpg'
+            },
+            {
+                id: 13,
+                brand: 'Mercedes-Benz',
+                model: 'C-Class',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1700000,
+                image: '../images/mercedesCClass1.jpg'
+            },
+            {
+                id: 14,
+                brand: 'Mercedes-Benz',
+                model: 'C-Class',
+                year: 2023,
+                mileage: 18000,
+                condition: 'used',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1500000,
+                image: '../images/mercedesCClass2.jpg'
+            },
+            {
+                id: 15,
+                brand: 'Mercedes-Benz',
+                model: 'C-Class',
+                year: 2022,
+                mileage: 45000,
+                condition: 'used',
+                engine: '2.0 л турбо бензин',
+                transmission: 'Автомат',
+                price: 1300000,
+                image: '../images/mercedesCClass3.jpg'
+            },
+            {
+                id: 16,
+                brand: 'Audi',
+                model: 'A4',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л турбо',
+                transmission: 'Автомат',
+                price: 1450000,
+                image: '../images/audiA41.jpg'
+            },
+            {
+                id: 17,
+                brand: 'Audi',
+                model: 'A4',
+                year: 2023,
+                mileage: 22000,
+                condition: 'used',
+                engine: '2.0 л турбо',
+                transmission: 'Автомат',
+                price: 1250000,
+                image: '../images/audiA42.jpg'
+            },
+            {
+                id: 18,
+                brand: 'Audi',
+                model: 'A4',
+                year: 2022,
+                mileage: 48000,
+                condition: 'used',
+                engine: '2.0 л турбо',
+                transmission: 'Автомат',
+                price: 1050000,
+                image: '../images/audiA43.jpg'
+            },
+            {
+                id: 19,
+                brand: 'Mazda',
+                model: 'CX-5',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.5 л бензин',
+                transmission: 'Автомат',
+                price: 1000000,
+                image: '../images/mazdaCX1.jpeg'
+            },
+            {
+                id: 20,
+                brand: 'Nissan',
+                model: 'Qashqai',
+                year: 2023,
+                mileage: 15000,
+                condition: 'used',
+                engine: '1.6 л бензин',
+                transmission: 'Автомат',
+                price: 850000,
+                image: '../images/nissanQashqai1.jpg'
+            },
+            {
+                id: 21,
+                brand: 'Hyundai',
+                model: 'Tucson',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 1050000,
+                image: '../images/hyundaiTucson1.jpg'
+            },
+            {
+                id: 22,
+                brand: 'Lexus',
+                model: 'RX',
+                year: 2023,
+                mileage: 25000,
+                condition: 'used',
+                engine: '3.5 л бензин',
+                transmission: 'Автомат',
+                price: 1900000,
+                image: '../images/lexusRX1.jpg'
+            },
+            {
+                id: 23,
+                brand: 'Kia',
+                model: 'Sportage',
+                year: 2022,
+                mileage: 40000,
+                condition: 'used',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 800000,
+                image: '../images/kiaSportage1.jpg'
+            },
+            {
+                id: 24,
+                brand: 'Volvo',
+                model: 'XC60',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л дизель',
+                transmission: 'Автомат',
+                price: 1550000,
+                image: '../images/volvoXC601.jpg'
+            },
+            {
+                id: 25,
+                brand: 'Ford',
+                model: 'Mustang',
+                year: 2023,
+                mileage: 18000,
+                condition: 'used',
+                engine: '5.0 л бензин',
+                transmission: 'Автомат',
+                price: 1600000,
+                image: '../images/fordMustang1.jpg'
+            },
+            {
+                id: 26,
+                brand: 'Toyota',
+                model: 'RAV4',
+                year: 2023,
+                mileage: 12000,
+                condition: 'used',
+                engine: '2.5 л бензин',
+                transmission: 'Автомат',
+                price: 1100000,
+                image: '../images/rav41.jpg'
+            },
+            {
+                id: 27,
+                brand: 'Toyota',
+                model: 'Corolla',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '1.8 л бензин',
+                transmission: 'Автомат',
+                price: 950000,
+                image: '../images/corolla1.jpg'
+            },
+            {
+                id: 28,
+                brand: 'Honda',
+                model: 'Civic',
+                year: 2022,
+                mileage: 30000,
+                condition: 'used',
+                engine: '1.5 л турбо бензин',
+                transmission: 'Автомат',
+                price: 850000,
+                image: '../images/civic1.jpg'
+            },
+            {
+                id: 29,
+                brand: 'Honda',
+                model: 'CR-V',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 1250000,
+                image: '../images/crv1.jpg'
+            },
+            {
+                id: 30,
+                brand: 'BMW',
+                model: 'X3',
+                year: 2023,
+                mileage: 10000,
+                condition: 'used',
+                engine: '2.0 л турбо дизель',
+                transmission: 'Автомат',
+                price: 1800000,
+                image: '../images/bmwX31.jpg'
+            },
+            {
+                id: 31,
+                brand: 'Mercedes-Benz',
+                model: 'E-Class',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '3.0 л турбо дизель',
+                transmission: 'Автомат',
+                price: 2200000,
+                image: '../images/mercedesE1.jpg'
+            },
+            {
+                id: 32,
+                brand: 'Volkswagen',
+                model: 'Tiguan',
+                year: 2022,
+                mileage: 32000,
+                condition: 'used',
+                engine: '2.0 л дизель',
+                transmission: 'Автомат',
+                price: 1400000,
+                image: '../images/tiguan1.jpg'
+            },
+            {
+                id: 33,
+                brand: 'Audi',
+                model: 'Q5',
+                year: 2023,
+                mileage: 15000,
+                condition: 'used',
+                engine: '2.0 л турбо',
+                transmission: 'Автомат',
+                price: 2000000,
+                image: '../images/audiQ51.jpg'
+            },
+            {
+                id: 34,
+                brand: 'Lexus',
+                model: 'NX',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.4 л турбо бензин',
+                transmission: 'Автомат',
+                price: 2400000,
+                image: '../images/lexusNX1.jpg'
+            },
+            {
+                id: 35,
+                brand: 'Nissan',
+                model: 'X-Trail',
+                year: 2023,
+                mileage: 20000,
+                condition: 'used',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 1300000,
+                image: '../images/nissanXTrail1.jpg'
+            },
+            {
+                id: 36,
+                brand: 'Hyundai',
+                model: 'Santa Fe',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.2 л дизель',
+                transmission: 'Автомат',
+                price: 1600000,
+                image: '../images/santafe1.jpg'
+            },
+            {
+                id: 37,
+                brand: 'Mazda',
+                model: 'Mazda3',
+                year: 2022,
+                mileage: 35000,
+                condition: 'used',
+                engine: '2.0 л бензин',
+                transmission: 'Автомат',
+                price: 900000,
+                image: '../images/mazda31.jpg'
+            },
+            {
+                id: 38,
+                brand: 'Volvo',
+                model: 'XC90',
+                year: 2024,
+                mileage: 0,
+                condition: 'new',
+                engine: '2.0 л гібрид',
+                transmission: 'Автомат',
+                price: 3000000,
+                image: '../images/xc901.jpg'
+            }
+                ];
+
+        function renderCars(filteredCars) {
+            const carGrid = document.getElementById('car-grid');
+            carGrid.innerHTML = '';
+
+            filteredCars.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.classList.add('car-card');
+                carCard.innerHTML = `
+                    <img src="${car.image}" alt="${car.brand} ${car.model}" class="car-image">
+                    <div class="car-info">
+                        <h3 class="car-title">${car.brand} ${car.model}</h3>
+                        <ul class="car-details">
+                            <li>Рік випуску: ${car.year}</li>
+                            <li>Пробіг: ${car.mileage} км</li>
+                            <li>Двигун: ${car.engine}</li>
+                            <li>Коробка: ${car.transmission}</li>
+                            <li>Стан: ${car.condition === 'new' ? 'Нова' : 'Вживана'}</li>
+                        </ul>
+                        <div class="car-price">${car.price.toLocaleString()} ₴</div>
+                        <button onclick="openBuyModal(${car.id})" class="btn btn-primary">Купити</button>
+                    </div>
+                `;
+                carGrid.appendChild(carCard);
+            });
+        }
+
+        function filterAndSortCars() {
+            const brandFilter = document.getElementById('brand-filter').value;
+            const yearFilter = document.getElementById('year-filter').value;
+            const conditionFilter = document.getElementById('condition-filter').value;
+            const priceFilter = document.getElementById('price-filter').value;
+            const sortFilter = document.getElementById('sort-filter').value;
+
+            let filteredCars = cars.filter(car => {
+                const matchBrand = !brandFilter || car.brand === brandFilter;
+                const matchYear = !yearFilter || car.year.toString() === yearFilter;
+                const matchCondition = !conditionFilter || car.condition === conditionFilter;
+                
+                let matchPrice = true;
+                if (priceFilter) {
+                    if (priceFilter === '0-500000') matchPrice = car.price <= 500000;
+                    if (priceFilter === '500000-1000000') matchPrice = car.price >= 500000 && car.price <= 1000000;
+                    if (priceFilter === '1000000+') matchPrice = car.price >= 1000000;
+                }
+
+                return matchBrand && matchYear && matchCondition && matchPrice;
+            });
+
+            switch(sortFilter) {
+                case 'price-asc':
+                    filteredCars.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filteredCars.sort((a, b) => b.price - a.price);
+                    break;
+                case 'year-asc':
+                    filteredCars.sort((a, b) => a.year - b.year);
+                    break;
+                case 'year-desc':
+                    filteredCars.sort((a, b) => b.year - a.year);
+                    break;
+            }
+
+            renderCars(filteredCars);
+        }
+
+        function openBuyModal(carId) {
+            const modal = document.getElementById('buy-modal');
+            const carSelect = document.getElementById('selected-car');
+            const selectedCar = cars.find(car => car.id === carId);
+
+            carSelect.innerHTML = `<option value="${selectedCar.id}">${selectedCar.brand} ${selectedCar.model} (${selectedCar.year})</option>`;
+            
+            modal.style.display = 'block';
+        }
+
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('buy-modal').style.display = 'none';
+        }
+
+        document.getElementById('buy-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Заявка надіслана! Ми зв\'яжемося з вами найближчим часом.');
+            document.getElementById('buy-modal').style.display = 'none';
+            this.reset();
+        });
+
+        document.getElementById('brand-filter').addEventListener('change', filterAndSortCars);
+        document.getElementById('year-filter').addEventListener('change', filterAndSortCars);
+        document.getElementById('condition-filter').addEventListener('change', filterAndSortCars);
+        document.getElementById('price-filter').addEventListener('change', filterAndSortCars);
+        document.getElementById('sort-filter').addEventListener('change', filterAndSortCars);
+
+        renderCars(cars);
+
+    window.onload = function() {
+        const savedCarState = localStorage.getItem('carState');
+        if (savedCarState) {
+            const conditionFilter = document.getElementById('condition-filter');
+
+            conditionFilter.value = savedCarState === 'Нова' ? 'new' : 'used';
+
+            filterAndSortCars();
+        }
+        localStorage.removeItem('carState');
+    };
+    </script>
+</body>
+</html>

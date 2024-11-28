@@ -1,0 +1,57 @@
+.catalog-filters {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.catalog-filters h1 {
+    text-align: center;
+    color: var(--primary-green);
+    margin-bottom: 40px;
+    font-size: 34px;
+}
+
+.filter-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.filter-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 200px;
+}
+
+.car-details {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.car-details li {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .filter-group {
+        flex-direction: column;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+}

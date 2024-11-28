@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Послуги | AutoMarket Ukraine</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="../images/logo.png" style="width:50px ; height: 50px">
+            <a href="../index.html" class="logo">AutoMarket Ukraine</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Головна</a></li>
+                    <li><a href="../html/catalog.html">Каталог автомобілів</a></li>
+                    <li><a href="../html/services.html">Послуги</a></li>
+                    <li><a href="../html/about.html">Про компанію</a></li>
+                    <li><a href="../html/news.html">Новини</a></li>
+                    <li><a href="../html/contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+    <section class="features">
+            <h1 style="color:#1E4E42; text-align:center; font-size:34px;">Наші послуги</h1>
+            <p style="color:black; text-align:center; font-size:28px">Комплексні рішення для комфортної купівлі автомобіля</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Кредитування</h3>
+                <p>Вигідні кредитні пропозиції від провідних банків України. Мінімальна процентна ставка від 0.01%.</p>
+                <button id="creditButton" class="btn btn-primary">Розрахувати кредит</button>
+            </div>
+            <div class="feature-card">
+                <h3>Страхування</h3>
+                <p>Повний спектр страхових послуг. КАСКО, ОСЦПВ, страхування від нещасних випадків.</p>
+                <button id="insuranceButton" class="btn btn-secondary">Обрати страховку</button>
+            </div>
+            <div class="feature-card">
+                <h3>Trade-in</h3>
+                <p>Обміняйте свій старий автомобіль на новий з додатковою вигодою. Швидко та зручно.</p>
+                <button id="tradeinButton" class="btn btn-primary">Детальніше</button>
+            </div>
+            <div class="feature-card">
+                <h3>Сервісне обслуговування</h3>
+                <p>Професійне технічне обслуговування та ремонт автомобілів усіх марок.</p>
+                <button id="serviceButton" class="btn btn-secondary">Записатися на сервіс</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="car-catalog">
+        <h2 class="section-title">Наші партнери</h2>
+        <div class="car-grid">
+            <div class="car-card">
+                <img src="../images/privatbank.png" alt="Приватбанк" style="height:150px; width:150px;">
+                <div class="car-info">
+                    <h3 class="car-title">Приватбанк</h3>
+                    <p>Кредитні програми для придбання автомобілів</p>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="../images/alfa.png" alt="Альфа Страхування" class="car-image" style="height: auto;width: auto;">
+                <div class="car-info">
+                    <h3 class="car-title">Альфа Страхування</h3>
+                    <p>Надійний страховий захист вашого авто</p>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="../images/ugb.png" alt="Укргаз Банк" class="car-image" style="height: auto;width: auto; align-content: center">
+                <div class="car-info">
+                    <h3 class="car-title">Укргаз Банк</h3>
+                    <p>Вигідні умови автокредитування</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Про компанію</h4>
+               <ul>
+                    <li><a href="../html/about.html">Про нас</a></li>
+                    <li><a href="../html/about.html">Наші переваги</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Послуги</h4>
+                <ul>
+                    <li><a href="../html/services.html">Кредитування</a></li>
+                    <li><a href="../html/services.html">Страхування</a></li>
+                    <li><a href="../html/services.html">Trade-in</a></li>
+                    <li><a href="../html/services.html">Сервіс</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Контакти</h4>
+                <ul>
+                    <li>+38 093 457 9164</li>
+                    <li><a href="mailto:info@automarket.ua">info@automarket.ua</a></li>
+                    <li>м. Київ, вул. Автомобільна, 1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 AutoMarket Ukraine. Всі права захищені.
+        </div>
+    </footer>
+    </main>
+    <div id="creditModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Розрахунок кредиту</h2>
+            <form id="creditForm">
+                <label>Вартість автомобіля:</label>
+                <input type="number" placeholder="Введіть вартість" required>
+                <label>Термін кредиту (місяців):</label>
+                <input type="number" placeholder="12-84 місяці" min="12" max="84" required>
+                <label>Gmail:</label>
+                <input type="text" required>
+                <button type="submit" class="btn btn-primary">Розрахувати</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="insuranceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Вибір страхування</h2>
+            <form id="insuranceForm">
+                <select required>
+                    <option value="">Оберіть тип страхування</option>
+                    <option value="kasko">КАСКО</option>
+                    <option value="osago">ОСЦПВ</option>
+                    <option value="accident">Страхування від нещасних випадків</option>
+                </select>
+                    <label>Марка автомобіля:</label>
+                    <input type="text" required>
+                    <label>Номер телефона:</label>
+                    <input type="text" required>
+                <button type="submit" class="btn btn-secondary">Продовжити</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="tradeinModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Trade-in</h2>
+            <form id="tradeinForm">
+                <label>Марка автомобіля:</label>
+                <input type="text" required>
+                <label>Рік випуску:</label>
+                <input type="number" min="1990" max="2024" required>
+                <label>Номер телефона:</label>
+                <input type="text" required>
+                <button type="submit" class="btn btn-primary">Оцінити</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Запис на сервіс</h2>
+            <form id="serviceForm">
+                <label>Марка автомобіля:</label>
+                <input type="text" required>
+                <label>Дата обслуговування:</label>
+                <input type="date" required>
+                <label>Тип обслуговування:</label>
+                <select required>
+                    <option value="">Оберіть послугу</option>
+                    <option value="diagnostic">Діагностика</option>
+                    <option value="maintenance">Технічне обслуговування</option>
+                    <option value="repair">Ремонт</option>
+                </select>
+                <label>Номер телефона:</label>
+                <input type="text" required>
+                <button type="submit" class="btn btn-secondary">Записатися</button>
+            </form>
+        </div>
+    </div>
+    
+      <script>
+        const creditButton = document.getElementById('creditButton');
+        const insuranceButton = document.getElementById('insuranceButton');
+        const tradeinButton = document.getElementById('tradeinButton');
+        const serviceButton = document.getElementById('serviceButton');
+        const creditModal = document.getElementById('creditModal');
+        const insuranceModal = document.getElementById('insuranceModal');
+        const tradeinModal = document.getElementById('tradeinModal');
+        const serviceModal = document.getElementById('serviceModal');
+
+        const closeBtns = document.querySelectorAll('.close');
+
+        function openModal(modal) {
+            modal.style.display = 'block';
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+        }
+
+        creditButton.addEventListener('click', () => openModal(creditModal));
+        insuranceButton.addEventListener('click', () => openModal(insuranceModal));
+        tradeinButton.addEventListener('click', () => openModal(tradeinModal));
+        serviceButton.addEventListener('click', () => openModal(serviceModal));
+
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modal = e.target.closest('.modal');
+                closeModal(modal);
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target);
+            }
+        });
+
+        document.getElementById('creditForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Кредит калькулюється. Очікуйте зворотнього зв\'язку!');
+            closeModal(creditModal);
+        });
+
+        document.getElementById('insuranceForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Заявка на страхування надіслана. Менеджер зв\'яжеться з вами.');
+            closeModal(insuranceModal);
+        });
+
+        document.getElementById('tradeinForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Ваш автомобіль оцінюється. Очікуйте пропозицію.');
+            closeModal(tradeinModal);
+        });
+
+        document.getElementById('serviceForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Записано на сервісне обслуговування. Очікуйте підтвердження.');
+            closeModal(serviceModal);
+        });
+    </script>
+</body>
+</html>

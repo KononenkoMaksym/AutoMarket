@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket Ukraine - Продаж нових та вживаних авто в Україні</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="images/logo.png" style="width:50px ; height: 50px">
+            <a href="index.html" class="logo">AutoMarket Ukraine</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="./html/catalog.html">Каталог автомобілів</a></li>
+                    <li><a href="./html/services.html">Послуги</a></li>
+                    <li><a href="./html/about.html">Про компанію</a></li>
+                    <li><a href="./html/news.html">Новини</a></li>
+                    <li><a href="./html/contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="background-image: url('images/back2.jpg');" >
+        <div class="hero-content">
+            <h1 style="background-color: rgba(65, 33, 80, 0.5); color: white;">Знайдіть своє ідеальне авто</h1>
+            <p style="background-color: rgba(65, 33, 80, 0.5); color: white;">Найбільший вибір нових та вживаних автомобілів в Україні</p>
+            <div class="button-group">
+                <a href="./html/catalog.html" class="btn btn-primary" data-car-state="Нова">Нові авто</a>
+                <a href="./html/catalog.html" class="btn btn-secondary" data-car-state="Вживана">Вживані авто</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Широкий вибір</h3>
+                <p>Понад 1000 автомобілів у наявності</p>
+            </div>
+            <div class="feature-card">
+                <h3>Вигідні умови</h3>
+                <p>Кредит та лізинг від 0.01%</p>
+            </div>
+            <div class="feature-card">
+                <h3>Гарантія</h3>
+                <p>Офіційна гарантія на всі автомобілі</p>
+            </div>
+            <div class="feature-card">
+                <h3>Сервіс</h3>
+                <p>Професійне обслуговування</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="car-catalog">
+        <h2 class="section-title">Популярні пропозиції</h2>
+        <div class="car-grid">
+            <div class="car-card">
+                <img src="images/camry1.jpg" alt="Toyota Camry" class="car-image">
+                <div class="car-info">
+                    <h3 class="car-title">Toyota Camry</h3>
+                    <div class="car-price">1 200 000 ₴</div>
+                    <a href="html/catalog.html" class="btn btn-primary">Перейти до каталогу</a>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="images/hondaaccord1.jpg" alt="Honda Accord" class="car-image">
+                <div class="car-info">
+                    <h3 class="car-title">Honda Accord</h3>
+                    <div class="car-price">1 100 000 ₴</div>
+                    <a href="html/catalog.html" class="btn btn-primary">Перейти до каталогу</a>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="images/VolkswagenPassat1.jpg" alt="Volkswagen Passat" class="car-image">
+                <div class="car-info">
+                    <h3 class="car-title">Volkswagen Passat</h3>
+                    <div class="car-price">950 000 ₴</div>
+                    <a href="html/catalog.html" class="btn btn-primary">Перейти до каталогу</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Про компанію</h4>
+                <ul>
+                    <li><a href="./html/about.html">Про нас</a></li>
+                    <li><a href="./html/about.html">Наші переваги</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Послуги</h4>
+                <ul>
+                    <li><a href="./html/services.html">Кредитування</a></li>
+                    <li><a href="./html/services.html">Страхування</a></li>
+                    <li><a href="./html/services.html">Trade-in</a></li>
+                    <li><a href="./html/services.html">Сервіс</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Контакти</h4>
+                <ul>
+                    <li>+38 093 457 9164</li>
+                    <li><a href="mailto:info@automarket.ua">info@automarket.ua</a></li>
+                    <li>м. Київ, вул. Автомобільна, 1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AutoMarket Ukraine. Всі права захищені.</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.button-group a').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const carState = this.getAttribute('data-car-state');
+
+                localStorage.setItem('carState', carState);
+            });
+        });
+    </script>
+</body>
+</html>
